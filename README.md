@@ -14,14 +14,16 @@ Summary: Methods for robust statistics, a state of the art in the early 2000s, n
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/r-robust-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/r-robust-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/r-robust-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/r-robust-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/r-robust-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/r-robust-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/r-robust-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/r-robust-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/r-robust-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/r-robust-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/r-robust-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/r-robust-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/r-robust/badges/version.svg)](https://anaconda.org/conda-forge/r-robust)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/r-robust/badges/downloads.svg)](https://anaconda.org/conda-forge/r-robust)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-r--robust-green.svg)](https://anaconda.org/conda-forge/r-robust) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/r-robust.svg)](https://anaconda.org/conda-forge/r-robust) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/r-robust.svg)](https://anaconda.org/conda-forge/r-robust) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/r-robust.svg)](https://anaconda.org/conda-forge/r-robust) |
 
 Installing r-robust
 ===================
