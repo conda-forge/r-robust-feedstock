@@ -13,7 +13,8 @@ source:
   sha256: e4196f01bb3b0d768759d4411d524238b627eb8dc213d84cb30014e75480f8ac
 
 build:
-  number: 0
+  merge_build_host: True  # [win]
+  number: 1
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -21,15 +22,18 @@ build:
 
 requirements:
   build:
+    - posix                # [win]
+    - {{ compiler('fortran') }}        # [unix]
+    - {{ compiler('m2w64_fortran') }}  # [win]
+    - {{ compiler('c') }}        # [unix]
+    - {{ compiler('m2w64_c') }}  # [win]
+  host:
     - r-base
     - r-mass
     - r-fit.models
     - r-lattice
     - r-robustbase
     - r-rrcov
-    - posix                # [win]
-    - {{native}}toolchain  # [win]
-    - gcc                  # [not win]
 
   run:
     - r-base
@@ -38,7 +42,6 @@ requirements:
     - r-lattice
     - r-robustbase
     - r-rrcov
-    - libgcc  # [not win]
 
 test:
   commands:
