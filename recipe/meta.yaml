@@ -1,4 +1,5 @@
 {% set version = '0.4-18' %}
+{% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
 package:
@@ -8,13 +9,13 @@ package:
 source:
   fn: robust_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/robust_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/robust/robust_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/robust_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/robust/robust_{{ version }}.tar.gz
   sha256: e4196f01bb3b0d768759d4411d524238b627eb8dc213d84cb30014e75480f8ac
 
 build:
   merge_build_host: True  # [win]
-  number: 1
+  number: 2
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -22,11 +23,14 @@ build:
 
 requirements:
   build:
-    - posix                # [win]
-    - {{ compiler('fortran') }}        # [unix]
-    - {{ compiler('m2w64_fortran') }}  # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('fortran') }}  # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
     - r-mass
@@ -34,9 +38,9 @@ requirements:
     - r-lattice
     - r-robustbase
     - r-rrcov
-
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
     - r-mass
     - r-fit.models
     - r-lattice
@@ -45,19 +49,24 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('robust')"  # [not win]
+    - $R -e "library('robust')"           # [not win]
     - "\"%R%\" -e \"library('robust')\""  # [win]
 
 about:
   home: https://CRAN.R-project.org/package=robust
-  license: GPL-2.0
+  license: GPL-2
   summary: Methods for robust statistics, a state of the art in the early 2000s, notably for
     robust regression and robust multivariate analysis.
-  license_family: GPL
+  license_family: GPL2
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'  # [unix]
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-2'  # [win]
 
 extra:
   recipe-maintainers:
+    - johanneskoester
     - bgruening
     - daler
-    - johanneskoester
+    - jdblischak
+    - cbrueffer
+    - dbast
     - rvalieris
