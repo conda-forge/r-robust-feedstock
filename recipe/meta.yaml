@@ -1,4 +1,4 @@
-{% set version = "0.4-18.2" %}
+{% set version = "0.5-0.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,10 +10,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/robust_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/robust/robust_{{ version }}.tar.gz
-  sha256: 7350b35af0a06c085b110cbacbfc191f2eb20861a396be9b8a538ffe9a69a70b
+  sha256: 82f0b50028938966f807a4c4da5c345a3a64ccafd9a31c64a22cda852ed345cf
 
 build:
-  merge_build_host: True  # [win]
+  merge_build_host: true  # [win]
   number: 0
   rpaths:
     - lib/R/lib/
@@ -31,6 +31,8 @@ requirements:
     - {{posix}}coreutils         # [win]
     - {{posix}}zip               # [win]
   host:
+    - libblas
+    - liblapack
     - r-base
     - r-mass
     - r-fit.models
@@ -54,10 +56,9 @@ test:
 about:
   home: https://CRAN.R-project.org/package=robust
   license: GPL-2
-  summary: Methods for robust statistics, a state of the art in the early 2000s, notably for
-    robust regression and robust multivariate analysis.
+  summary: Methods for robust statistics, a state of the art in the early 2000s, notably for robust regression and robust multivariate analysis.
   license_family: GPL2
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
