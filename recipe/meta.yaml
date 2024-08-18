@@ -1,4 +1,4 @@
-{% set version = "0.7-4" %}
+{% set version = "0.7-5" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/robust_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/robust/robust_{{ version }}.tar.gz
-  sha256: 630d552772fd9965739d559ee53b90bed23b835592311604b060a3a0a0090862
+  sha256: a3c02a9c9101b966907cb52b3193c4ef51864928ad99c3351edf5390532c1acc
 
 build:
   merge_build_host: true  # [win]
@@ -22,7 +22,9 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}              # [not win]
+    - {{ stdlib("c") }}                # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ compiler('fortran') }}        # [not win]
     - {{ compiler('m2w64_fortran') }}  # [win]
     - {{ posix }}filesystem        # [win]
