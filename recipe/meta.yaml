@@ -12,7 +12,7 @@ source:
   sha256: a3c02a9c9101b966907cb52b3193c4ef51864928ad99c3351edf5390532c1acc
 
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -62,7 +62,6 @@ about:
   home: https://CRAN.R-project.org/package=robust
   license: GPL-2.0-only
   summary: Methods for robust statistics, a state of the art in the early 2000s, notably for robust regression and robust multivariate analysis.
-  license_family: GPL2
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
